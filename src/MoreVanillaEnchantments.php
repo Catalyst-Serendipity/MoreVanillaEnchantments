@@ -100,8 +100,8 @@ class MoreVanillaEnchantments extends PluginBase{
                 "secondaryTags" => []
             ],
             EnchantmentIds::SMITE => [
-                "name" => "Bane of Arthropods",
-                "instance" => ExtraVanillaEnchantments::BANE_OF_ARTHROPODS(),
+                "name" => "Smite",
+                "instance" => ExtraVanillaEnchantments::SMITE(),
                 "primaryTags" => [
                     ItemEnchantmentTags::SWORD,
                     ItemEnchantmentTags::AXE,
