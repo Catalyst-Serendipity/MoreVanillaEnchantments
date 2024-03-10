@@ -54,7 +54,7 @@ class BaneOfArthropods extends MeleeWeaponEnchantment{
     public function onPostAttack(Entity $attacker, Entity $victim, int $enchantmentLevel) : void{
         $effectDuration = (mt_rand(10, (10 + (5 * $enchantmentLevel))) / 10);
         if($victim instanceof Living && $this->isApplicableTo($victim)){
-            $victim->getEffects()->add(new EffectInstance(VanillaEffects::SLOWNESS(), ($effectDuration * 20)));
+            $victim->getEffects()->add(new EffectInstance(VanillaEffects::SLOWNESS(), ($effectDuration * 20), 4));
         }
     }
 }
