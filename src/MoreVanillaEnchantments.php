@@ -31,6 +31,7 @@ use pocketmine\item\enchantment\StringToEnchantmentParser;
 use pocketmine\plugin\PluginBase;
 use ReflectionClass;
 use serendipity\morevanillaenchantments\enchantment\ExtraVanillaEnchantments;
+use serendipity\morevanillaenchantments\enchantment\handler\IncompatibleEnchantmentHandler;
 
 class MoreVanillaEnchantments extends PluginBase{
 
@@ -63,7 +64,7 @@ class MoreVanillaEnchantments extends PluginBase{
                 "primaryTags" => [
                     ItemEnchantmentTags::HELMET
                 ],
-                "secondaryTags" => [],
+                "secondaryTags" => []
             ],
             EnchantmentIds::BANE_OF_ARTHROPODS => [
                 "name" => "Bane of Arthropods",
@@ -72,7 +73,40 @@ class MoreVanillaEnchantments extends PluginBase{
                     ItemEnchantmentTags::SWORD,
                     ItemEnchantmentTags::AXE,
                 ],
-                "secondaryTags" => [],
+                "secondaryTags" => []
+            ],
+            EnchantmentIds::DEPTH_STRIDER => [
+                "name" => "Depth Strider",
+                "instance" => ExtraVanillaEnchantments::DEPTH_STRIDER(),
+                "primaryTags" => [
+                    ItemEnchantmentTags::BOOTS
+                ],
+                "secondaryTags" => []
+            ],
+            EnchantmentIds::FROST_WALKER => [
+                "name" => "Frost Walker",
+                "instance" => ExtraVanillaEnchantments::FROST_WALKER(),
+                "primaryTags" => [],
+                "secondaryTags" => [
+                    ItemEnchantmentTags::BOOTS
+                ]
+            ],
+            EnchantmentIds::LOOTING => [
+                "name" => "Looting",
+                "instance" => ExtraVanillaEnchantments::LOOTING(),
+                "primaryTags" => [
+                    ItemEnchantmentTags::SWORD
+                ],
+                "secondaryTags" => []
+            ],
+            EnchantmentIds::SMITE => [
+                "name" => "Bane of Arthropods",
+                "instance" => ExtraVanillaEnchantments::BANE_OF_ARTHROPODS(),
+                "primaryTags" => [
+                    ItemEnchantmentTags::SWORD,
+                    ItemEnchantmentTags::AXE,
+                ],
+                "secondaryTags" => []
             ]
         ];
         $reflectionClass = new ReflectionClass(EnchantmentIds::class);
@@ -91,5 +125,8 @@ class MoreVanillaEnchantments extends PluginBase{
                 StringToEnchantmentParser::getInstance()->register($data[$id]["name"], fn() => $data[$id]["instance"]);
             }
         }
+
+        IncompatibleEnchantmentHandler::register();
+        $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
     }
 }

@@ -23,25 +23,34 @@ declare(strict_types=1);
 
 namespace serendipity\morevanillaenchantments\enchantment;
 
-use pocketmine\entity\effect\EffectInstance;
-use pocketmine\entity\effect\VanillaEffects;
 use pocketmine\entity\Entity;
-use pocketmine\entity\Living;
 use pocketmine\item\enchantment\MeleeWeaponEnchantment;
 use pocketmine\network\mcpe\protocol\types\entity\EntityIds;
 
-class BaneOfArthropods extends MeleeWeaponEnchantment{
+class SmiteEnchantment extends MeleeWeaponEnchantment{
 
-    private const ARTHROPODS_ENTITIES = [
-        EntityIds::BEE,
-        EntityIds::CAVE_SPIDER,
-        EntityIds::ENDERMITE,
-        EntityIds::SILVERFISH,
-        EntityIds::SPIDER
+    private const UNDEAD_ENTITIES = [
+        // TODO: Chicken Jockey 
+        EntityIds::DROWNED,
+        EntityIds::HUSK,
+        EntityIds::PHANTOM,
+        EntityIds::SKELETON,
+        EntityIds::SKELETON_HORSE,
+        // TODO: Skeleton Horseman
+        // TODO: Spider Jockey
+        EntityIds::STRAY,
+        EntityIds::WITHER,
+        EntityIds::WITHER_SKELETON,
+        EntityIds::ZOGLIN,
+        EntityIds::ZOMBIE,
+        EntityIds::ZOMBIE_HORSE,
+        EntityIds::ZOMBIE_PIGMAN,
+        EntityIds::ZOMBIE_VILLAGER,
+        EntityIds::ZOMBIE_VILLAGER_V2
     ];
 
     public function isApplicableTo(Entity $victim) : bool{
-        if(in_array($victim::getNetworkTypeId(), self::ARTHROPODS_ENTITIES)){
+        if(in_array($victim::getNetworkTypeId(), self::UNDEAD_ENTITIES)){
             return true;
         }
         return false;
@@ -52,9 +61,8 @@ class BaneOfArthropods extends MeleeWeaponEnchantment{
     }
 
     public function onPostAttack(Entity $attacker, Entity $victim, int $enchantmentLevel) : void{
-        $effectDuration = (mt_rand(10, (10 + (5 * $enchantmentLevel))) / 10);
-        if($victim instanceof Living && $this->isApplicableTo($victim)){
-            $victim->getEffects()->add(new EffectInstance(VanillaEffects::SLOWNESS(), ($effectDuration * 20), 4));
+        if(!$this->isApplicableTo($victim)){
+            return;
         }
     }
 }

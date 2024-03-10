@@ -33,7 +33,11 @@ use pocketmine\utils\RegistryTrait;
  * @generate-registry-docblock
  *
  * @method static WaterEnchantment AQUA_AFFINITY()
- * @method static BaneOfArthropods BANE_OF_ARTHROPODS()
+ * @method static BaneOfArthropodsEnchantment BANE_OF_ARTHROPODS()
+ * @method static WaterEnchantment DEPTH_STRIDER()
+ * @method static WaterEnchantment FROST_WALKER()
+ * @method static LootingEnchantment LOOTING()
+ * @method static SmiteEnchantment SMITE()
  */
 
 final class ExtraVanillaEnchantments{
@@ -43,22 +47,62 @@ final class ExtraVanillaEnchantments{
         self::_registryRegister(
             "AQUA_AFFINITY", new WaterEnchantment(
                 "Aqua Affinity",
-                Rarity::COMMON,
+                Rarity::UNCOMMON,
                 0,
                 0,
                 1,
-                fn(int $level) : int => 0,
-                0
+                // TODO: minEnchantingPower ??
+                // TODO: maxEnchantingPower ??
         ));
         self::_registryRegister(
-            "BANE_OF_ARTHROPODS", new BaneOfArthropods(
+            "BANE_OF_ARTHROPODS", new BaneOfArthropodsEnchantment(
                 "Bane of Arthropods",
+                Rarity::UNCOMMON,
+                0,
+                0,
+                5,
+                // TODO: minEnchantingPower ??
+                // TODO: maxEnchantingPower ??
+        ));
+        self::_registryRegister(
+            "DEPTH_STRIDER", new WaterEnchantment(
+                "Depth Strider",
+                Rarity::UNCOMMON,
+                0,
+                0,
+                3,
+                // TODO: minEnchantingPower ??
+                // TODO: maxEnchantingPower ??
+        ));
+        self::_registryRegister(
+            "FROST_WALKER", new WaterEnchantment(
+                "Frost Walker",
+                Rarity::COMMON,
+                0,
+                0,
+                2,
+                // TODO: minEnchantingPower ??
+                // TODO: maxEnchantingPower ??
+        ));
+        self::_registryRegister(
+            "LOOTING", new LootingEnchantment(
+                "Looting",
+                Rarity::UNCOMMON,
+                0,
+                0,
+                3,
+                // TODO: minEnchantingPower ??
+                // TODO: maxEnchantingPower ??
+        ));
+        self::_registryRegister(
+            "SMITE", new SmiteEnchantment(
+                "Smite",
                 Rarity::RARE,
                 0,
                 0,
                 5,
-                fn(int $level) : int => 0,
-                0
+                // TODO: minEnchantingPower ??
+                // TODO: maxEnchantingPower ??
         ));
     }
 }
