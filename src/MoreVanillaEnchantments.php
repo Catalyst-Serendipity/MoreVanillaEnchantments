@@ -127,6 +127,9 @@ class MoreVanillaEnchantments extends PluginBase{
         }
 
         IncompatibleEnchantmentHandler::register();
+    }
+
+    protected function onEnable() : void{
         $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
     }
 }
