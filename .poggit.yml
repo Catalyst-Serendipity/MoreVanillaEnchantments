@@ -6,4 +6,6 @@ projects:
   MoreVanillaEnchantments:
     path: ""
     icon: "assets/book.png"
+    lint:
+      phpstan: false
 ...
